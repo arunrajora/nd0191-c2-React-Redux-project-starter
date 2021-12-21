@@ -12,7 +12,7 @@ function App() {
     dispatch(loadInitialData());
   }, [dispatch]);
   return (
-    <div className='App'>
+    <div>
       <NavBar />
       <Routes>
         <Route index element={<div>Home</div>} />

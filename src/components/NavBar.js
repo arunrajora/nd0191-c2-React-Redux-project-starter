@@ -107,6 +107,12 @@ function NavBar({ a }) {
               </Button>
             ))}
           </Box>
+          <Button
+            onClick={handleCloseNavMenu}
+            sx={{ my: 2, color: 'red', display: 'block' }}
+          >
+            LOGOUT
+          </Button>
           <Box sx={{ flexGrow: 0 }}>
             <Avatar alt='User Pic' src='/static/images/something.jpg' />
           </Box>
