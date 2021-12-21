@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import moment from 'moment';
 import { _getQuestions } from '../utils/_DATA';
 import { saveQuestion, saveQuestionAnswer } from './actions';
 
@@ -40,7 +41,16 @@ export const selectAllFilteredQuestions =
         );
         return questionType === ANSWERED ? isAnswered : !isAnswered;
       })
-    ).sort((a, b) => b.timestamp - a.timestamp);
+    )
+      .sort((a, b) => b.timestamp - a.timestamp)
+      .map(({ id, optionOne, optionTwo, author, timestamp }) => ({
+        id,
+        author,
+        optionOne: optionOne.text,
+        optionTwo: optionTwo.text,
+        avatarURL: users[author].avatarURL,
+        timestamp: moment(timestamp).fromNow(),
+      }));
   };
 
 export default questionsSlice.reducer;
