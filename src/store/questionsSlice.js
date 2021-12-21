@@ -19,12 +19,28 @@ export const questionsSlice = createSlice({
         return action.payload;
       })
       .addCase(saveQuestion.fulfilled, (state, action) => {
-        // TODO: Add question
+        state[action.payload.id] = action.payload;
       })
       .addCase(saveQuestionAnswer.fulfilled, (state, action) => {
         // TODO: Add question answer
       });
   },
 });
+
+export const [UNANSWERED, ANSWERED] = [0, 1];
+
+export const selectAllFilteredQuestions =
+  (questionType) =>
+  ({ questions, authedUser, users }) => {
+    return (
+      questions &&
+      Object.values(questions).filter((question) => {
+        const isAnswered = users[authedUser].answers.hasOwnProperty(
+          question.id
+        );
+        return questionType === ANSWERED ? isAnswered : !isAnswered;
+      })
+    ).sort((a, b) => b.timestamp - a.timestamp);
+  };
 
 export default questionsSlice.reducer;

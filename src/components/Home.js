@@ -2,11 +2,18 @@ import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { useState } from 'react';
-
-const [UNANSWERED, ANSWERED] = [0, 1];
+import { useSelector } from 'react-redux';
+import {
+  selectAllFilteredQuestions,
+  ANSWERED,
+  UNANSWERED,
+} from '../store/questionsSlice';
 
 function Home() {
   const [selectedTab, setSelectedTab] = useState(UNANSWERED);
+  const allFilteredQuestions = useSelector(
+    selectAllFilteredQuestions(selectedTab)
+  );
 
   const handleChange = (event, newValue) => {
     setSelectedTab(newValue);
@@ -20,6 +27,9 @@ function Home() {
           <Tab label='Answered' value={ANSWERED} />
         </Tabs>
       </Box>
+      {allFilteredQuestions?.map((question) => (
+        <div key={question.id}>{question.optionOne.text}</div>
+      ))}
     </div>
   );
 }

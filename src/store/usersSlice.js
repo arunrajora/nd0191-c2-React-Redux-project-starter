@@ -17,7 +17,7 @@ export const usersSlice = createSlice({
         return action.payload;
       })
       .addCase(saveQuestion.fulfilled, (state, action) => {
-        // TODO: Add question
+        state[action.payload.author].questions.push(action.payload.id);
       })
       .addCase(saveQuestionAnswer.fulfilled, (state, action) => {
         // TODO: Add question answer
