@@ -1,4 +1,4 @@
-import { AppBar } from '@mui/material';
+import { AppBar, Stack } from '@mui/material';
 import Container from '@mui/material/Container';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -11,7 +11,9 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout, selectLoggedInUser } from '../store/authedUserSlice';
 
 const pages = [
   { name: 'Home', path: '/' },
@@ -29,6 +31,10 @@ function NavBar({ a }) {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
+
+  const dispatch = useDispatch();
+
+  const loggedInUser = useSelector(selectLoggedInUser);
 
   return (
     <AppBar position='static'>
@@ -92,30 +98,45 @@ function NavBar({ a }) {
           >
             Employee Poll
           </Typography>
-
-          <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
+          <Stack
+            sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, mr: 5 }}
+            direction='row'
+            justifyContent='flex-end'
+          >
             {pages.map(({ name, path }) => (
               <Button
                 key={path}
-                component={Link}
+                component={NavLink}
                 to={path}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
+                style={({ isActive }) =>
+                  isActive
+                    ? {
+                        textDecoration: 'underline',
+                        textUnderlineOffset: '10px',
+                      }
+                    : undefined
+                }
               >
                 {name}
               </Button>
             ))}
-          </Box>
-          <Button
-            onClick={handleCloseNavMenu}
-            sx={{ my: 2, color: 'red', display: 'block' }}
-          >
-            LOGOUT
-          </Button>
-          <Box sx={{ flexGrow: 0 }}>
-            <Avatar alt='User Pic' src='/static/images/something.jpg' />
-          </Box>
+          </Stack>
+          {loggedInUser && (
+            <>
+              <Avatar alt={loggedInUser.name} src={loggedInUser.avatarURL} />
+              <Button
+                onClick={() => {
+                  handleCloseNavMenu();
+                  dispatch(logout());
+                }}
+                sx={{ my: 2, color: 'red', display: 'block' }}
+              >
+                LOGOUT
+              </Button>
+            </>
+          )}
         </Toolbar>
       </Container>
     </AppBar>

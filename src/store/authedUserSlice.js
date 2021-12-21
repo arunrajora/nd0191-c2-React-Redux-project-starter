@@ -15,4 +15,11 @@ export const questionsSlice = createSlice({
   },
 });
 
+export const { login, logout } = questionsSlice.actions;
+
+export const selectIsUserLoggedIn = ({ authedUser }) => authedUser;
+
+export const selectLoggedInUser = ({ authedUser, users }) =>
+  authedUser && users[authedUser];
+
 export default questionsSlice.reducer;
