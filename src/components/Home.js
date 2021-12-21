@@ -28,7 +28,6 @@ function Home() {
   const handleChange = (event, newValue) => {
     setSelectedTab(newValue);
   };
-  console.log(allFilteredQuestions);
 
   return (
     <div align='center'>

@@ -8,6 +8,7 @@ import Leaderboard from './components/Leaderboard';
 import Login from './components/Login';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/ProtectedRoute';
+import QuestionDetails from './components/QuestionDetails';
 import { loadInitialData } from './store/actions';
 
 function App() {
@@ -48,7 +49,7 @@ function App() {
           path='/questions/:question_id'
           element={
             <ProtectedRoute>
-              <div>question details page</div>
+              <QuestionDetails />
             </ProtectedRoute>
           }
         />
