@@ -38,4 +38,10 @@ export const selectLeaderboardData = ({ users }) =>
     }))
     .sort((a, b) => b.score - a.score);
 
+export const selectIsQuestionAnswered =
+  (question_id) =>
+  ({ users, authedUser }) => {
+    return users[authedUser]?.answers.hasOwnProperty(question_id);
+  };
+
 export default usersSlice.reducer;
