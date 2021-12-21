@@ -25,4 +25,17 @@ export const usersSlice = createSlice({
   },
 });
 
+export const selectLeaderboardData = ({ users }) =>
+  users &&
+  Object.values(users)
+    .map(({ id, name, avatarURL, questions, answers }) => ({
+      id,
+      name,
+      avatarURL,
+      questionsAsked: questions.length,
+      questionsAnswered: Object.keys(answers).length,
+      score: questions.length + Object.keys(answers).length,
+    }))
+    .sort((a, b) => b.score - a.score);
+
 export default usersSlice.reducer;

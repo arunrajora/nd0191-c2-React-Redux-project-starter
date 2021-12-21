@@ -2,8 +2,12 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import AddQuestion from './components/AddQuestion';
+import Home from './components/Home';
+import Leaderboard from './components/Leaderboard';
 import Login from './components/Login';
 import NavBar from './components/NavBar';
+import ProtectedRoute from './components/ProtectedRoute';
 import { loadInitialData } from './store/actions';
 
 function App() {
@@ -15,15 +19,47 @@ function App() {
     <div>
       <NavBar />
       <Routes>
-        <Route index element={<div>Home</div>} />
+        <Route
+          index
+          element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
         <Route path='/login' element={<Login />} />
-        <Route path='/add' element={<div>Add</div>} />
-        <Route path='/leaderboard' element={<div>Leader</div>} />
+        <Route
+          path='/add'
+          element={
+            <ProtectedRoute>
+              <AddQuestion />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/leaderboard'
+          element={
+            <ProtectedRoute>
+              <Leaderboard />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path='/questions/:question_id'
-          element={<div>Question Details</div>}
+          element={
+            <ProtectedRoute>
+              <div>question details page</div>
+            </ProtectedRoute>
+          }
         />
-        <Route path='*' element={<div>404</div>} />
+        <Route
+          path='*'
+          element={
+            <ProtectedRoute>
+              <h1 align='center'>404 page</h1>
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </div>
   );

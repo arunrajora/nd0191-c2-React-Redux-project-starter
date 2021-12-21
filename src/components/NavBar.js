@@ -11,7 +11,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 
 import { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout, selectLoggedInUser } from '../store/authedUserSlice';
 
@@ -21,7 +21,7 @@ const pages = [
   { name: 'Leaderboard', path: '/leaderboard' },
 ];
 
-function NavBar({ a }) {
+function NavBar(props) {
   const [anchorElNav, setAnchorElNav] = useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -33,6 +33,7 @@ function NavBar({ a }) {
   };
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const loggedInUser = useSelector(selectLoggedInUser);
 
@@ -130,6 +131,7 @@ function NavBar({ a }) {
                 onClick={() => {
                   handleCloseNavMenu();
                   dispatch(logout());
+                  navigate('/');
                 }}
                 sx={{ my: 2, color: 'red', display: 'block' }}
               >

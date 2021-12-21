@@ -11,12 +11,16 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import { useDispatch } from 'react-redux';
 import { authenticateUser } from '../store/actions';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-function Login({ a }) {
+function Login(props) {
   const [userId, setUserId] = useState('');
 
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+
+  const navigate = useNavigate();
+  const { state } = useLocation();
 
   const dispatch = useDispatch();
 
@@ -26,7 +30,12 @@ function Login({ a }) {
       <form
         onSubmit={(event) => {
           event.preventDefault();
-          dispatch(authenticateUser(userId, password));
+          const isAuthenticated = dispatch(authenticateUser(userId, password));
+          if (isAuthenticated) {
+            navigate(state || '/');
+          } else {
+            alert('Invalid user id or password.');
+          }
         }}
       >
         <Stack
