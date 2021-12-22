@@ -62,10 +62,34 @@ export const selectUnansweredQuestionDetails =
       questions[question_id];
     return {
       id,
-      author,
       authedUser,
+      authorName: users[author].name,
       optionOne: optionOne.text,
       optionTwo: optionTwo.text,
+      avatarURL: users[author].avatarURL,
+      timestamp: moment(timestamp).fromNow(),
+    };
+  };
+
+export const selectAnsweredQuestionDetails =
+  (question_id) =>
+  ({ questions, users, authedUser }) => {
+    const { id, optionOne, optionTwo, author, timestamp } =
+      questions[question_id];
+    return {
+      id,
+      authedUser,
+      authorName: users[author].name,
+      optionOne: optionOne.text,
+      optionOneVotes: optionOne.votes.map((userId) => ({
+        userId,
+        avatarURL: users[userId].avatarURL,
+      })),
+      optionTwo: optionTwo.text,
+      optionTwoVotes: optionTwo.votes.map((userId) => ({
+        userId,
+        avatarURL: users[userId].avatarURL,
+      })),
       avatarURL: users[author].avatarURL,
       timestamp: moment(timestamp).fromNow(),
     };

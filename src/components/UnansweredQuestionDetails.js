@@ -14,7 +14,6 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
 
 import { useState } from 'react';
 import { saveQuestionAnswer } from '../store/actions';
@@ -23,15 +22,22 @@ function UnansweredQuestionDetails({ question_id }) {
   const [selectedOption, setSelectedOption] = useState('optionOne');
 
   const dispatch = useDispatch();
-  const { id, author, avatarURL, timestamp, optionOne, optionTwo, authedUser } =
-    useSelector(selectUnansweredQuestionDetails(question_id));
+  const {
+    id,
+    authorName,
+    avatarURL,
+    timestamp,
+    optionOne,
+    optionTwo,
+    authedUser,
+  } = useSelector(selectUnansweredQuestionDetails(question_id));
 
   return (
     <div align='center'>
       <Card sx={{ maxWidth: 600, mt: 4 }} key={id}>
         <CardHeader
-          avatar={<Avatar alt={author} src={avatarURL} />}
-          title={`${author} asks`}
+          avatar={<Avatar alt={authorName} src={avatarURL} />}
+          title={`${authorName} asks`}
           subheader={timestamp}
         />
         <CardContent>
