@@ -9,12 +9,10 @@ import CardHeader from '@mui/material/CardHeader';
 import Avatar from '@mui/material/Avatar';
 import { Button } from '@mui/material';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
-
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-
 import { useState } from 'react';
 import { saveQuestionAnswer } from '../store/actions';
 

@@ -58,6 +58,7 @@ export const selectAllFilteredQuestions =
 export const selectUnansweredQuestionDetails =
   (question_id) =>
   ({ questions, users, authedUser }) => {
+    if (!questions.hasOwnProperty(question_id)) return null;
     const { id, optionOne, optionTwo, author, timestamp } =
       questions[question_id];
     return {
@@ -93,6 +94,12 @@ export const selectAnsweredQuestionDetails =
       avatarURL: users[author].avatarURL,
       timestamp: moment(timestamp).fromNow(),
     };
+  };
+
+export const selectIsQuestionValid =
+  (question_id) =>
+  ({ questions }) => {
+    return questions.hasOwnProperty(question_id);
   };
 
 export default questionsSlice.reducer;

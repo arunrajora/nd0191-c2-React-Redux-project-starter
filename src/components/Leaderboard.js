@@ -6,9 +6,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Avatar from '@mui/material/Avatar';
-
 import { useSelector } from 'react-redux';
-
 import { selectLeaderboardData } from '../store/usersSlice';
 import { Stack } from '@mui/material';
 

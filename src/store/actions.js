@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { _saveQuestion, _saveQuestionAnswer } from '../utils/_DATA';
 import { login } from './authedUserSlice';
-
 import { getAllQuestions } from './questionsSlice';
 import { getAllUsers } from './usersSlice';
 

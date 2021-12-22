@@ -2,7 +2,6 @@ import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import LinearProgress from '@mui/material/LinearProgress';
 import Box from '@mui/material/Box';
-
 import AvatarGroup from '@mui/material/AvatarGroup';
 
 function AnsweredOption({ optionText, optionVotes, totalVotes, authedUser }) {

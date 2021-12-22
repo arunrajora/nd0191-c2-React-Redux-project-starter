@@ -3,14 +3,8 @@ import { selectAnsweredQuestionDetails } from '../store/questionsSlice';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-
 import CardHeader from '@mui/material/CardHeader';
 import Avatar from '@mui/material/Avatar';
-import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
-import LinearProgress from '@mui/material/LinearProgress';
-import Box from '@mui/material/Box';
-
-import AvatarGroup from '@mui/material/AvatarGroup';
 import AnsweredOption from './AnsweredOption';
 
 function AnsweredQuestionDetails({ question_id }) {
