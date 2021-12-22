@@ -14,7 +14,10 @@ export const saveQuestion = createAsyncThunk('all/saveQuestion', _saveQuestion);
 
 export const saveQuestionAnswer = createAsyncThunk(
   'all/saveQuestionAnswer',
-  _saveQuestionAnswer
+  async (answer) => {
+    await _saveQuestionAnswer(answer);
+    return answer;
+  }
 );
 
 export const authenticateUser = (userId, password) => (dispatch, getState) => {

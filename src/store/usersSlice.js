@@ -20,7 +20,8 @@ export const usersSlice = createSlice({
         state[action.payload.author].questions.push(action.payload.id);
       })
       .addCase(saveQuestionAnswer.fulfilled, (state, action) => {
-        // TODO: Add question answer
+        state[action.payload.authedUser].answers[action.payload.qid] =
+          action.payload.answer;
       });
   },
 });

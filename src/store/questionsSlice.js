@@ -23,7 +23,9 @@ export const questionsSlice = createSlice({
         state[action.payload.id] = action.payload;
       })
       .addCase(saveQuestionAnswer.fulfilled, (state, action) => {
-        // TODO: Add question answer
+        state[action.payload.qid][action.payload.answer].votes.push(
+          action.payload.authedUser
+        );
       });
   },
 });
@@ -51,6 +53,22 @@ export const selectAllFilteredQuestions =
         avatarURL: users[author].avatarURL,
         timestamp: moment(timestamp).fromNow(),
       }));
+  };
+
+export const selectUnansweredQuestionDetails =
+  (question_id) =>
+  ({ questions, users, authedUser }) => {
+    const { id, optionOne, optionTwo, author, timestamp } =
+      questions[question_id];
+    return {
+      id,
+      author,
+      authedUser,
+      optionOne: optionOne.text,
+      optionTwo: optionTwo.text,
+      avatarURL: users[author].avatarURL,
+      timestamp: moment(timestamp).fromNow(),
+    };
   };
 
 export default questionsSlice.reducer;

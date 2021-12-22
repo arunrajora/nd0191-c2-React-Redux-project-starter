@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography';
 import CardHeader from '@mui/material/CardHeader';
 import Avatar from '@mui/material/Avatar';
 import { Button } from '@mui/material';
-
+import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import {
   selectAllFilteredQuestions,
   ANSWERED,
@@ -39,7 +39,7 @@ function Home() {
       </Box>
       {allFilteredQuestions?.map(
         ({ id, avatarURL, author, timestamp, optionOne, optionTwo }) => (
-          <Card sx={{ maxWidth: 345, mt: 4 }} key={id}>
+          <Card sx={{ maxWidth: 600, mt: 4 }} key={id}>
             <CardHeader
               avatar={<Avatar alt={author} src={avatarURL} />}
               title={`${author} ${
@@ -51,18 +51,16 @@ function Home() {
               <Typography variant='overline' color='text.secondary'>
                 Would You Rather?
               </Typography>
-              <Typography variant='h6' color='text.primary'>
+              <Typography variant='h6' color='text.primary' sx={{ mt: 2 }}>
                 {optionOne}
               </Typography>
-              <Typography variant='body1' color='text.secondary'>
+              <Typography variant='body1' color='text.secondary' sx={{ my: 2 }}>
                 OR
               </Typography>
               <Typography variant='h6' color='text.primary'>
                 {optionTwo}
               </Typography>
-              <Typography variant='body1' color='text.secondary'>
-                ?
-              </Typography>
+              <QuestionMarkIcon color='info' fontSize='large' sx={{ my: 2 }} />
             </CardContent>
             <CardActions>
               <Button
