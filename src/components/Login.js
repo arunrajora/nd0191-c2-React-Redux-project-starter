@@ -9,8 +9,8 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import { useDispatch } from 'react-redux';
-import { authenticateUser } from '../store/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { authenticateUser, selectIsDataLoading } from '../store/actions';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 function Login(props) {
@@ -18,6 +18,8 @@ function Login(props) {
 
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+
+  const isDataLoading = useSelector(selectIsDataLoading);
 
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -77,7 +79,7 @@ function Login(props) {
               label='Password'
             />
           </FormControl>
-          <Button variant='contained' type='submit'>
+          <Button variant='contained' type='submit' disabled={isDataLoading}>
             Submit
           </Button>
         </Stack>

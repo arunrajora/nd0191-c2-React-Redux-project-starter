@@ -10,6 +10,7 @@ import NavBar from './components/NavBar';
 import ProtectedRoute from './components/ProtectedRoute';
 import QuestionDetails from './components/QuestionDetails';
 import { loadInitialData } from './store/actions';
+import LoadingBar from 'react-redux-loading-bar';
 
 function App() {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ function App() {
   }, [dispatch]);
   return (
     <div>
+      <LoadingBar />
       <NavBar />
       <Routes>
         <Route

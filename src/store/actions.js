@@ -3,10 +3,12 @@ import { _saveQuestion, _saveQuestionAnswer } from '../utils/_DATA';
 import { login } from './authedUserSlice';
 import { getAllQuestions } from './questionsSlice';
 import { getAllUsers } from './usersSlice';
+import { showLoading, hideLoading } from 'react-redux-loading-bar';
 
-export const loadInitialData = () => (dispatch) => {
-  dispatch(getAllQuestions());
-  dispatch(getAllUsers());
+export const loadInitialData = () => async (dispatch) => {
+  dispatch(showLoading());
+  await Promise.all([dispatch(getAllQuestions()), dispatch(getAllUsers())]);
+  dispatch(hideLoading());
 };
 
 export const saveQuestion = createAsyncThunk('all/saveQuestion', _saveQuestion);
@@ -28,3 +30,5 @@ export const authenticateUser = (userId, password) => (dispatch, getState) => {
   }
   return foundUser;
 };
+
+export const selectIsDataLoading = ({ loadingBar }) => loadingBar.default === 1;
