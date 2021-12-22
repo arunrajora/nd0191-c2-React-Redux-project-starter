@@ -39,3 +39,13 @@ or
 ```
 yarn test
 ```
+
+## Demo Link
+
+The youtube demo can be found here- https://youtu.be/I1VgBwLnFh4
+
+## Test Output-
+
+The application has various tests like snapshot testing, input change testing, fake backend functions testing. The output of running these tests is-
+
+![Test Result](./test_output.jpg)
