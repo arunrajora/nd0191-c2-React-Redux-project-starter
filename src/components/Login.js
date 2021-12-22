@@ -47,10 +47,10 @@ function Login(props) {
           justifyContent='center'
         >
           <TextField
+            label='userId'
             value={userId}
             onChange={(event) => setUserId(event.target.value)}
             id='outlined-basic'
-            label='User Id'
             variant='outlined'
             sx={{ m: 1, width: '48ch' }}
           />
